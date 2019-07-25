@@ -2,7 +2,9 @@ package sg.edu.rp.c346.p11_mydatabook;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -10,6 +12,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -60,6 +63,12 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> arg0, View arg1, int
                     position, long arg3) {
 
+                if (position == 3) {
+                    Intent i = new Intent(MainActivity.this, AboutActivity.class);
+                    startActivity(i);
+                    return;
+                }
+
                 Fragment fragment = null;
                 if (position == 0)
                     fragment = new BioFragment();
@@ -67,10 +76,7 @@ public class MainActivity extends AppCompatActivity {
                     fragment = new VaccinationFragment();
                 else if (position == 2)
                     fragment = new AnniversaryFragment();
-                else if (position == 3){
-                    Intent i = new Intent(MainActivity.this, AboutActivity.class);
-                    startActivity(i);
-                }
+
 
                 if (fragment != null) {
                     FragmentManager fm = getSupportFragmentManager();
@@ -90,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
         currentTitle = this.getTitle().toString();
 
-        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, 	  /* DrawerLayout object */
+        drawerToggle = new ActionBarDrawerToggle(this, drawerLayout,      /* DrawerLayout object */
                 R.string.drawer_open, /* "open drawer" description */
                 R.string.drawer_close /* "close drawer" description */
         ) {
